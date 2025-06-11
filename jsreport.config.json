@@ -1,73 +1,19 @@
 {
-  "httpPort": 5488,
-  "trustUserCode": true,
-  "store": {
-    "provider": "fs"
-  },
-  "blobStorage": {
-    "provider": "fs"
-  },
-  "reportTimeout": 60000,
-  "extensions": {
-    "docker-workers": {
-      "enabled": false,
-      "container": {
-        "image": "worker",
-        "memory": "520m",
-        "memorySwap": "720m",
-        "cpus": "0.8"
-      },
-      "numberOfWorkers": 3
+  "allowLocalFilesAccess": true,
+  "authentication": {
+    "cookieSession": {
+      "secret": "secret-for-session"
     },
-    "authentication": {
-      "cookieSession": {
-        "secret": "a secret"
-      },
-      "admin": {
-        "username": "admin",
-        "password": "password"
-      },
-      "enabled": false
-    },
-    "sample-template": {
-      "createSamples": true
+    "admin": {
+      "username": "admin",
+      "password": "password"
     }
   },
-  "extensionsList": [
-    "assets",
-    "authentication",
-    "authorization",
-    "base",
-    "browser-client",
-    "child-templates",
-    "chrome-pdf",
-    "cli",
-    "components",
-    "data",
-    "docx",
-    "express",
-    "freeze",
-    "fs-store",
-    "handlebars",
-    "html-to-xlsx",
-    "import-export",
-    "jsrender",
-    "licensing",
-    "localization",
-    "npm",
-    "pdf-utils",
-    "pptx",
-    "public-templates",
-    "reports",
-    "sample-template",
-    "scheduling",
-    "scripts",
-    "static-pdf",
-    "studio",
-    "studio-theme-dark",
-    "tags",
-    "text",
-    "version-control",
-    "xlsx"
-  ]
+  "extensions": {
+    "express": {
+      "api": {
+        "enabled": true
+      }
+    }
+  }
 }
