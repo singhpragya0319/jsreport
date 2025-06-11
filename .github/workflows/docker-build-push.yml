@@ -1,0 +1,18 @@
+name: Build jsreport Docker Image
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t localhost:5000/jsreport:latest .
+          docker push localhost:5000/jsreport:latest
