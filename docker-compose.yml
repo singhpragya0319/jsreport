@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: jsreport
+      POSTGRES_PASSWORD: jsreportpassword
+      POSTGRES_DB: jsreportdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  jsreport:
+    image: jsreport/jsreport:latest  # or jsreport-local if building locally
+    depends_on:
+      - postgres
+    ports:
+      - "5488:5488"
+    environment:
+      - POSTGRES_USER=jsreport
+      - POSTGRES_PASSWORD=jsreportpassword
+      - POSTGRES_DB=jsreportdb
+      - POSTGRES_HOST=postgres
+    volumes:
+      - ./data:/jsreport/data
+
+volumes:
+  pgdata:
