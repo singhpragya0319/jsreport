@@ -1,0 +1,51 @@
+{
+    "info": {
+      "name": "jsreport API",
+      "_postman_id": "12345-abcde-67890-fghij",
+      "description": "Collection to create template and generate reports",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create Report Template",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Test Template\",\n  \"content\": \"<h1>Hello {{:foo}}</h1>\",\n  \"engine\": \"jsrender\",\n  \"recipe\": \"html\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:5488/api/templates",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5488",
+            "path": ["api", "templates"]
+          }
+        }
+      },
+      {
+        "name": "Generate Report",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"template\": { \"name\": \"Test Template\" },\n  \"data\": { \"foo\": \"World\" }\n}"
+          },
+          "url": {
+            "raw": "http://localhost:5488/api/report",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5488",
+            "path": ["api", "report"]
+          }
+        }
+      }
+    ]
+  }
+  
