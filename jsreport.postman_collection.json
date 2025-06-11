@@ -1,21 +1,61 @@
 {
     "info": {
-      "name": "jsreport API",
-      "_postman_id": "jsreport-collection",
-      "description": "Generate report from pre-created template",
+      "name": "jsreport API Test",
+      "_postman_id": "3f9e2d65-9c1e-466b-8c64-a9adac8fb87f",
+      "description": "Collection to test jsreport endpoints like /api/templates",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
       {
-        "name": "Generate Report",
+        "name": "GET all templates",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:5488/api/templates",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5488",
+            "path": ["api", "templates"]
+          }
+        }
+      },
+      {
+        "name": "POST create template",
         "request": {
           "method": "POST",
           "header": [
-            { "key": "Content-Type", "value": "application/json" }
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
           ],
           "body": {
             "mode": "raw",
-            "raw": "{\n  \"template\": { \"name\": \"Test Template\" },\n  \"data\": { \"foo\": \"World\" }\n}"
+            "raw": "{\n  \"name\": \"hello-template\",\n  \"content\": \"Hello {{:foo}}\",\n  \"engine\": \"jsrender\",\n  \"recipe\": \"html\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:5488/api/templates",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5488",
+            "path": ["api", "templates"]
+          }
+        }
+      },
+      {
+        "name": "POST render template",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"template\": {\n    \"name\": \"hello-template\"\n  },\n  \"data\": {\n    \"foo\": \"World\"\n  }\n}"
           },
           "url": {
             "raw": "http://localhost:5488/api/report",

@@ -1,0 +1,20 @@
+{
+  "httpPort": 5488,
+  "enableStudio": true,
+  "authentication": {
+    "enabled": false
+  },
+  "allowLocalFilesAccess": true,
+  "extensions": {
+    "express": {
+      "enabled": true
+    },
+    "fs-store": {
+      "provider": "fs"
+    },
+    "studio": {
+      "enabled": true
+    }
+  }
+}
+
